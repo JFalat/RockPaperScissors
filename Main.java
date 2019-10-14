@@ -1,54 +1,57 @@
-package RockPaperScissors;
-
-import RockPaperScissors.Choosable;
-import RockPaperScissors.Paper;
-import RockPaperScissors.Rock;
-import RockPaperScissors.Scissors;
+package rockPaperScissors;
 
 import java.util.Scanner;
 
+import static rockPaperScissors.Choice.paper;
+
 class Main {
   public static void main(String[] args) {
-    Choosable choosable=null;
-    Choosable choosable2=null;
-
-
     Scanner scan = new Scanner(System.in);
 
     String test = scan.nextLine();
-    if (test.equals("Paper")) {
-      choosable=new Paper();
+    String test2 = scan.nextLine();
+    Choice choice1 = null;
+    Choice choice2 = null;
+    if (test.toUpperCase().equals("Paper".toUpperCase())) {
+      choice1 = paper;
     }
-    if (test.equals("Rock")) {
-      choosable=new Rock();
+    if (test.toUpperCase().equals("Rock".toUpperCase())) {
+      choice1 = Choice.rock;
     }
-    if (test.equals("Scissors")) {
-      choosable=new Scissors();
+    if (test.toUpperCase().equals("Scissors".toUpperCase())) {
+      choice1 = Choice.scissors;
     }
-
-    System.out.println(choosable);
-
-    Scanner scan2 = new Scanner(System.in);
-    String test2 = scan2.nextLine();
-    if (test2.equals("Paper")) {
-      choosable2=new Paper();
+    if (test2.toUpperCase().equals("Paper".toUpperCase())) {
+      choice2 = paper;
     }
-    if (test2.equals("Rock")) {
-      choosable2=new Rock();
+    if (test2.toUpperCase().equals("Rock".toUpperCase())) {
+      choice2 = Choice.rock;
     }
-    if (test2.equals("Scissors")) {
-      choosable2=new Scissors();
+    if (test2.toUpperCase().equals("Scissors".toUpperCase())) {
+      choice2 = Choice.scissors;
     }
 
-
-    System.out.println(choosable2);
-
-    choosable.beats(choosable2);
-
-
-
-
+    if (choice1 == choice2) {
+      System.out.println("Draw");
+    } else {
+      switch (choice1) {
+        case paper:
+          System.out.println(choice2 == Choice.rock ? "win" : "loose");
+          break;
+        case rock:
+          System.out.println(choice2 == Choice.scissors ? "win" : "loose");
+          break;
+        case scissors:
+          System.out.println(choice2 == Choice.paper ? "win" : "loose");
+          break;
+      }
+    }
   }
+
+
 }
+
+
+
 
 
